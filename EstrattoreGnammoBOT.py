@@ -7,6 +7,7 @@ import datetime
 # Get today's date
 today = datetime.date.today()
 
+
 # URL for the catering menu
 url = f"https://www.mazzotti.org/bassaromagnacatering/calendar.php?comune=7&grado=2&giorno={today}"
 
