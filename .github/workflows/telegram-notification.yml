@@ -2,8 +2,9 @@ name: Daily Telegram Notification
 
 on:
   schedule:
-    - cron: '0 7 * * *' # Schedule to run at 7:00 AM daily
-    workflow_dispatch:
+    - cron: "0 7 * * *"
+  workflow_dispatch:
+
 
 jobs:
   send-telegram-message:
