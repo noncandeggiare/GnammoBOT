@@ -43,4 +43,5 @@ jobs:
           token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           message: |
             Oggi si mangia:
-            ${{ steps.read_output_file.outputs.content }}
+            <pre>${{ steps.read_output_file.outputs.content }}</pre>
+            MarkdownParseMode: HTML
