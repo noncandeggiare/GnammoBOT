@@ -29,7 +29,7 @@ menu_element = div_content_element.find("div", class_="menu-calendar")
 if menu_element is not None:
     # Extract the menu text
     menu_text = menu_element.get_text(separator="\n").strip()
-    print("Menu for today:")
+    print("Oggi si mangia:")
     print(menu_text)
 else:
-    print("No menu available for today.")
+    print("Nessun menù per oggi.")
