@@ -1,0 +1,34 @@
+name: Daily Telegram Notification
+
+on:
+  schedule:
+    - cron: '0 7 * * *' # Schedule to run at 7:00 AM daily
+
+jobs:
+  send-telegram-message:
+    name: Send Telegram Notification
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run estrattoreGnammoBOT.py
+        run: python estrattoreGnammoBOT.py > output.txt
+
+      - name: Send Telegram message
+        uses: appleboy/telegram-action@v1
+        with:
+          to: ${{ secrets.TELEGRAM_CHAT_ID }}
+          token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          message: |
+            Daily Menu:
+            $(cat output.txt)
