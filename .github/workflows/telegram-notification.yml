@@ -24,7 +24,7 @@ jobs:
           pip install -r requirements.txt
 
       - name: Run script and save output
-        run: python estrattoreGnammoBOT.py > output.txt
+        run: python EstrattoreGnammoBOT.py > output.txt
 
       - name: Send Telegram message
         uses: appleboy/telegram-action@master
