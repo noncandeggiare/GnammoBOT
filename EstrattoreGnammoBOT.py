@@ -32,5 +32,10 @@ if menu_element is not None:
     menu_text = menu_element.get_text(separator="\n").strip()
     print("Oggi si mangia:")
     print(menu_text)
+
+    # Write the output to a file
+    with open("output.txt", "w") as file:
+        file.write(menu_text)
+
 else:
     print("Nessun menù per oggi.")
