@@ -24,11 +24,14 @@ jobs:
       - name: Run Estrattore to update output.html
         run: python EstrattoreGnammoBOT.py
 
+      - name: Read output.html file
+        id: read_output
+        run: echo "::set-output name=content::$(cat GnammoBOT/output.html)"
+
       - name: Send Telegram message
         uses: appleboy/telegram-action@master
         with:
           to: ${{ secrets.TELEGRAM_CHAT_ID }}
           token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          message: ${{ steps.read_output.outputs.content }}
           format: html
-          message: |
-            $(cat GnammoBOT/output.html)
