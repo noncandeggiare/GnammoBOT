@@ -52,14 +52,14 @@ if menu_element is not None:
     # Extract the menu text
     menu_text = menu_element.get_text(separator="\n")
     menu_text = menu_text.strip()  # Remove leading/trailing whitespaces
-    menu_text = menu_text.replace('\n', '<br>')  # Replace line breaks with <br> tags
+    menu_text = menu_text.replace('\n', '  \n')  # Replace line breaks with two spaces and a line break
 
-    # Create the HTML content
-    html_content = f"<html><body><p>Oggi si mangia:</p><p>{menu_text}</p></body></html>"
+    # Create the Markdown content
+    markdown_content = f"Oggi si mangia:\n\n{menu_text}"
 
-    # Save the HTML content to output.html file
-    with open("output.html", "w") as file:
-        file.write(html_content)
+    # Save the Markdown content to output.md file
+    with open("output.md", "w") as file:
+        file.write(markdown_content)
 else:
-    with open("output.html", "w") as file:
-        file.write("<html><body><p>No menu available for today.</p></body></html>")
+    with open("output.md", "w") as file:
+        file.write("No menu available for today.")
