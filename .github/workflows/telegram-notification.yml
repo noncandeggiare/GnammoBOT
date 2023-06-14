@@ -22,7 +22,7 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Run EstrattoreGnammoBOT to update output.md
-        run: python EstrattoreGnammoBOT.py
+        run: python GnammoBOT/EstrattoreGnammoBOT.py
 
       - name: Read output.md file
         id: read_output
