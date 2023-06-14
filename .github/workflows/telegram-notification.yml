@@ -34,7 +34,8 @@ jobs:
 
       - name: Read output file
         id: read_output_file
-        run: echo "::set-output name=content::$(cat GnammoBOT/output.txt)"
+        run: echo "::set-output name=content::$(< GnammoBOT/output.txt)"
+
 
       - name: Send Telegram message
         uses: appleboy/telegram-action@master
