@@ -21,26 +21,17 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Run script 
+      - name: Run Estrattore to update output.html
         run: python EstrattoreGnammoBOT.py
 
-      - name: Save output to file
-        run: |
-          mkdir -p GnammoBOT
-          python -c "import shutil; shutil.move('output.txt', 'GnammoBOT/output.txt')"
-
-      - name: Read output.txt
+      - name: Read HTML output file
         id: read_output
-        run: |
-          IFS=$'\n'       # Set the input field separator to newline
-          output=$(cat GnammoBOT/output.txt)  # Read the content of output.txt
-          echo "::set-output name=output::$output"  # Set the output variable
+        run: echo "::set-output name=content::$(cat GnammoBOT/output.html)"
   
       - name: Send Telegram message
         uses: appleboy/telegram-action@master
         with:
-          to: ${{ secrets.TELEGRAM_CHAT_ID }}
-          token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          format: html
-          message: |
-              <b>Oggi si mangia:</b><pre>${{ github.workspace }}/GnammoBOT/output.txt</pre>
+            to: ${{ secrets.TELEGRAM_CHAT_ID }}
+            token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+            format: html
+            message: ${{ steps.read_output.outputs.content }}
