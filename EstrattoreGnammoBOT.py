@@ -38,9 +38,14 @@ response = requests.get(url, verify=False)
 # Create a BeautifulSoup object to parse the HTML content
 soup = BeautifulSoup(response.content, "html.parser")
 
-# Find the menu element for today's date
-day_element = soup.find("div", class_="fc-day-number", text="13")
-menu_element = day_element.find_next_sibling("div", class_="fc-day-content").find("div", class_="menu-calendar")
+# Find the div element with the class "fc-day-number" containing today's day number
+day_element = soup.find("div", class_="fc-day-number", text=str(today.day))
+
+# Find the parent div element with class "fc-div-content"
+div_content_element = day_element.find_parent("div", class_="fc-div-content")
+
+# Find the nested div element with class "menu-calendar"
+menu_element = div_content_element.find("div", class_="menu-calendar")
 
 # Check if menu is available for today
 if menu_element is not None:
