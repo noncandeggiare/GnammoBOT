@@ -26,12 +26,27 @@ div_content_element = day_element.find_parent("div", class_="fc-div-content")
 # Find the nested div element with class "menu-calendar"
 menu_element = div_content_element.find("div", class_="menu-calendar")
 
+import requests
+from bs4 import BeautifulSoup
+
+# URL for the catering menu
+url = "https://www.mazzotti.org/bassaromagnacatering/calendar.php?comune=7&grado=2&giorno=2023-06-13"
+
+# Send a GET request to the URL
+response = requests.get(url, verify=False)
+
+# Create a BeautifulSoup object to parse the HTML content
+soup = BeautifulSoup(response.content, "html.parser")
+
+# Find the menu element for today's date
+menu_element = soup.find("div", class_="menu-calendar")
+
 # Check if menu is available for today
 if menu_element is not None:
-    # Extract the menu text
+    # Extract the menu text and replace <br> with %0A
     menu_text = menu_element.get_text(separator="\n")
+    menu_text = menu_text.replace("<br>", "%0A")
     menu_text = menu_text.strip()  # Remove leading/trailing whitespaces
-    menu_text = menu_text.replace('\n', '\%0A')  # Replace line breaks with escape sequence
     with open("output.txt", "w") as file:
         file.write(menu_text)
 else:
