@@ -21,12 +21,14 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Run Estrattore to update output.html
+      - name: Run EstrattoreGnammoBOT to update output.html
         run: python EstrattoreGnammoBOT.py
 
       - name: Read output.html file
         id: read_output
-        run: echo "::set-output name=content::$(cat GnammoBOT/output.html)"
+        run: |
+          content=$(cat GnammoBOT/output.html)
+          echo "::set-output name=content::$content"
 
       - name: Send Telegram message
         uses: appleboy/telegram-action@master
