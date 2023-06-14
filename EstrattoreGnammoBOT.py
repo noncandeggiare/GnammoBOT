@@ -51,11 +51,15 @@ menu_element = div_content_element.find("div", class_="menu-calendar")
 if menu_element is not None:
     # Extract the menu text
     menu_text = menu_element.get_text(separator="\n")
-    print("Oggi si mangia:")
-    print(menu_text)
+    menu_text = menu_text.strip()  # Remove leading/trailing whitespaces
+    menu_text = menu_text.replace('\n', '<br>')  # Replace line breaks with <br> tags
 
-    # Write the output to a file
-    with open("output.txt", "w") as file:
-        file.write(menu_text)
+    # Create the HTML content
+    html_content = f"<html><body><p>Oggi si mangia:</p><p>{menu_text}</p></body></html>"
+
+    # Save the HTML content to output.html file
+    with open("output.html", "w") as file:
+        file.write(html_content)
 else:
-    print("No menu available for today.")
+    with open("output.html", "w") as file:
+        file.write("<html><body><p>No menu available for today.</p></body></html>")
