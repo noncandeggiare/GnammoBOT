@@ -28,7 +28,7 @@ jobs:
         id: read_output
         run: |
           content=$(cat output.md)
-          echo "::set-output name=content::$content"
+          echo "::set-output name=content::${content//$'\n'/'%0A'}"
 
       - name: Send Telegram message
         uses: appleboy/telegram-action@master
