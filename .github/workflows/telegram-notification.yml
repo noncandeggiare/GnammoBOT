@@ -41,7 +41,6 @@ jobs:
         with:
           to: ${{ secrets.TELEGRAM_CHAT_ID }}
           token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          format: markdown
+          format: html
           message: |
-            Oggi si mangia:
-            ${{ steps.read_output.outputs.output }}
+              <b>Oggi si mangia:</b><pre>${{ github.workspace }}/GnammoBOT/output.txt</pre>
