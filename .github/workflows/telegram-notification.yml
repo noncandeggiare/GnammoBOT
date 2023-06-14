@@ -29,16 +29,15 @@ jobs:
           mkdir -p GnammoBOT
           python -c "import shutil; shutil.move('output.txt', 'GnammoBOT/output.txt')"
 
-      - name: Read output file
-        id: read_output_file
-        run: echo "::set-output name=content::$(< GnammoBOT/output.txt)"
-
-
+      - name: Read output.txt
+        id: read_output
+        run: echo "::set-output name=output::$(cat GnammoBOT/output.txt)"
+  
       - name: Send Telegram message
-        uses: appleboy/telegram-action@master
+        uses: appleboy/telegram-action@v2
         with:
           to: ${{ secrets.TELEGRAM_CHAT_ID }}
           token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           message: |
             Oggi si mangia:
-            ${{ steps.read_output_file.outputs.content }}
+            ${{ steps.read_output.outputs.output }}
