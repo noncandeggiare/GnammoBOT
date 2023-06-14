@@ -29,13 +29,11 @@ menu_element = div_content_element.find("div", class_="menu-calendar")
 # Check if menu is available for today
 if menu_element is not None:
     # Extract the menu text
-    menu_text = menu_element.get_text(separator="\n").strip()
-    print("Oggi si mangia:")
-    print(menu_text)
-
-    # Write the output to a file
+    menu_text = menu_element.get_text(separator="\n")
+    menu_text = menu_text.strip()  # Remove leading/trailing whitespaces
+    menu_text = menu_text.replace('\n', '\\n')  # Replace line breaks with escape sequence
     with open("output.txt", "w") as file:
         file.write(menu_text)
-
 else:
-    print("Nessun menù per oggi.")
+    with open("output.txt", "w") as file:
+        file.write("No menu available for today.")
