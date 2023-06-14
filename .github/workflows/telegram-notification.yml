@@ -31,7 +31,10 @@ jobs:
 
       - name: Read output.txt
         id: read_output
-        run: echo "::set-output name=output::$(cat GnammoBOT/output.txt)"
+        run: |
+          IFS=$'\n'       # Set the input field separator to newline
+          output=$(cat GnammoBOT/output.txt)  # Read the content of output.txt
+          echo "::set-output name=output::$output"  # Set the output variable
   
       - name: Send Telegram message
         uses: appleboy/telegram-action@master
