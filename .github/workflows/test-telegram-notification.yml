@@ -1,0 +1,37 @@
+name: Manual Test Telegram Notification
+
+on:
+  workflow_dispatch:
+
+jobs:
+  send_notification:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.x
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run EstrattoreGnammoBOT to update output.md
+        run: python EstrattoreGnammoBOT.py
+
+      - name: Read output.md file
+        id: read_output
+        run: |
+          content=$(cat output.md)
+          echo "::set-output name=content::${content//$'\n'/'%0A'}"
+
+      - name: Send Telegram message
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_CHAT_ID }}
+          token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          message: ${{ steps.read_output.outputs.content }}
+          format: markdown
