@@ -31,7 +31,7 @@ if menu_element is not None:
     # Extract the menu text
     menu_text = menu_element.get_text(separator="\n")
     menu_text = menu_text.strip()  # Remove leading/trailing whitespaces
-    menu_text = menu_text.replace('\n', '\\n')  # Replace line breaks with escape sequence
+    menu_text = menu_text.replace('\n', '\%0A')  # Replace line breaks with escape sequence
     with open("output.txt", "w") as file:
         file.write(menu_text)
 else:
