@@ -43,4 +43,4 @@ jobs:
           token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           message: |
             Oggi si mangia:
-            $(cat GnammoBOT/output.txt)
+            ${{ steps.read_output_file.outputs.content }}
