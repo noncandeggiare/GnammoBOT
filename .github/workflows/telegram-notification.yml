@@ -21,13 +21,13 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Run EstrattoreGnammoBOT to update output.html
+      - name: Run EstrattoreGnammoBOT to update output.md
         run: python EstrattoreGnammoBOT.py
 
-      - name: Read output.html file
+      - name: Read output.md file
         id: read_output
         run: |
-          content=$(cat GnammoBOT/output.html)
+          content=$(cat GnammoBOT/output.md)
           echo "::set-output name=content::$content"
 
       - name: Send Telegram message
@@ -36,4 +36,4 @@ jobs:
           to: ${{ secrets.TELEGRAM_CHAT_ID }}
           token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           message: ${{ steps.read_output.outputs.content }}
-          format: html
+          format: markdown
