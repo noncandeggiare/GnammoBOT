@@ -27,8 +27,8 @@ jobs:
       - name: Read output.md file
         id: read_output
         run: |
-          content=$(cat GnammoBOT/output.md)
-          echo "::set-output name=content::$content"
+          content=$(cat output.md)
+          echo "::set-output name=content::${content//$'\n'/'%0A'}"
 
       - name: Send Telegram message
         uses: appleboy/telegram-action@master
