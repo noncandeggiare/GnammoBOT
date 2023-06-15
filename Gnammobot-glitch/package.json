@@ -1,0 +1,19 @@
+{
+    "name": "gnammobot",
+    "version": "1.0.0",
+    "description": "Your project description",
+    "main": "index.js",
+    "scripts": {
+      "start": "node index.js"
+    },
+    "dependencies": {
+      "telegraf": "^4.4.2",
+      "axios": "^0.24.0",
+      "beautifulsoup4": "^4.10.0"
+    },
+    "engines": {
+      "node": ">=12"
+    },
+    "license": "MIT"
+  }
+  
