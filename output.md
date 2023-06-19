@@ -1,7 +1,7 @@
+*19 giugno*
 Oggi si mangia:
-
-Pasta Alla Crudaiola  
-Polpettone Di Tacchino E Bieta   
-Verdura Cruda  
-Pane Integrale - Frutta   
-Focaccia
+Pasta Rosè  
+Sformato Di Verdure E Piselli  
+Verdura Cotta   
+Frutta   
+Plumcake E Karkadè

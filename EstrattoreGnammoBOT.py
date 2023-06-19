@@ -4,10 +4,15 @@ import requests
 from bs4 import BeautifulSoup
 import datetime
 
+# Define the month names in Italian
+month_names = [
+    "gennaio", "febbraio", "marzo", "aprile", "maggio", "giugno",
+    "luglio", "agosto", "settembre", "ottobre", "novembre", "dicembre"
+]
+
 # Get today's date
 today = datetime.date.today()
-today_output = datetime.today().strftime("%d %B")  # Format: dd mmmm
-
+today_output = datetime.date.today().strftime("%d ") + month_names[today.month - 1]  # Format: dd mmmm
 
 # URL for the catering menu
 url = f"https://www.mazzotti.org/bassaromagnacatering/calendar.php?comune=7&grado=2&giorno={today}"
@@ -59,8 +64,8 @@ if menu_element is not None:
     markdown_content = f"*{today_output}*\nOggi si mangia:\n{menu_text}"
 
     # Save the Markdown content to output.md file
-    with open("output.md", "w") as file:
+    with open("output.md", "w", encoding="utf-8") as file:
         file.write(markdown_content)
 else:
-    with open("output.md", "w") as file:
+    with open("output.md", "w", encoding="utf-8") as file:
         file.write("Nessun menù disponibile.")
