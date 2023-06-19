@@ -56,12 +56,12 @@ menu_element = div_content_element.find("div", class_="menu-calendar")
 # Check if menu is available for today
 if menu_element is not None:
     # Extract the menu text
-    menu_text = menu_element.get_text(separator="\n")
+    menu_text = menu_element.get_text(separator=" \n * ")
     menu_text = menu_text.strip()  # Remove leading/trailing whitespaces
     menu_text = menu_text.replace('\n', '  \n')  # Replace line breaks with two spaces and a line break
 
     # Create the Markdown content
-    markdown_content = f"*{today_output}*\nOggi si mangia:\n{menu_text}"
+    markdown_content = f"*{today_output}*\nOggi si mangia:\n * {menu_text}"
 
     # Save the Markdown content to output.md file
     with open("output.md", "w", encoding="utf-8") as file:
