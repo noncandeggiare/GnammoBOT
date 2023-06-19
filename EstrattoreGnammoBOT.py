@@ -55,7 +55,7 @@ if menu_element is not None:
     menu_text = menu_text.replace('\n', '  \n')  # Replace line breaks with two spaces and a line break
 
     # Create the Markdown content
-    markdown_content = f"Oggi si mangia:\n\n{menu_text}"
+    markdown_content = f"Oggi si mangia:\n{menu_text}"
 
     # Save the Markdown content to output.md file
     with open("output.md", "w") as file:
