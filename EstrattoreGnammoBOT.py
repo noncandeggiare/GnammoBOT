@@ -6,6 +6,7 @@ import datetime
 
 # Get today's date
 today = datetime.date.today()
+today_output = datetime.today().strftime("%d %B")  # Format: dd mmmm
 
 
 # URL for the catering menu
@@ -55,11 +56,11 @@ if menu_element is not None:
     menu_text = menu_text.replace('\n', '  \n')  # Replace line breaks with two spaces and a line break
 
     # Create the Markdown content
-    markdown_content = f"Oggi si mangia:\n{menu_text}"
+    markdown_content = f"*{today_output}*\nOggi si mangia:\n{menu_text}"
 
     # Save the Markdown content to output.md file
     with open("output.md", "w") as file:
         file.write(markdown_content)
 else:
     with open("output.md", "w") as file:
-        file.write("No menu available for today.")
+        file.write("Nessun menù disponibile.")
