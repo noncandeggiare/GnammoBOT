@@ -1,7 +1,7 @@
-*19 giugno*
+*20 giugno*
 Oggi si mangia:
-Pasta Rosè  
-Sformato Di Verdure E Piselli  
-Verdura Cotta   
-Frutta   
-Plumcake E Karkadè
+ - Risotto Alle Carote   
+ - Pollo Al Forno   
+ - Verdura Cruda   
+ - Frutta    
+ - Latte E Biscotti
