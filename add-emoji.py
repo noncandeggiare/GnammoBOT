@@ -1,43 +1,35 @@
 import json
-import nltk
-from nltk.tokenize import sent_tokenize
 
-def load_emoji_map(file_path):
-    with open(file_path, 'r', encoding='utf-8') as file:
-        emoji_map = json.load(file)
-    return emoji_map
+# Load the emoji map from emoji_map.json using utf-8 encoding
+with open('emoji_map.json', encoding='utf-8') as f:
+    emoji_map = json.load(f)
 
-def add_emojis_to_sentences(message, emoji_map):
-    nltk.download('punkt')
-    
-    sentences = sent_tokenize(message)
-    
-    formatted_message = ''
-    for sentence in sentences:
-        emoji = None
-        for keywords, emote in emoji_map.items():
-            for keyword in keywords:
-                if keyword in sentence.lower():
-                    emoji = emote
-                    break
-            if emoji:
-                break
-        
-        if emoji:
-            formatted_message += f'{emoji} {sentence}\n'
-        else:
-            formatted_message += f'{sentence}\n'
-    
-    return formatted_message
+# Open output.md and read its content
+with open('output.md', encoding='utf-8') as f:
+    content = f.readlines()
 
-# Load emoji map from an external file
-emoji_map_file = 'emoji_map.json'
-emoji_map = load_emoji_map(emoji_map_file)
+# Find the index where "Oggi si mangia:" appears
+index = next((i for i, line in enumerate(content) if 'Oggi si mangia:' in line), None)
 
-# Read message from output.md file
-with open('output.md', 'r', encoding='utf-8') as file:
-    message = file.read()
+if index is not None:
+    # Create a list to store the updated menu items
+    updated_menu = []
 
-# Process message with emojis
-formatted_message = add_emojis_to_sentences(message, emoji_map)
-print(formatted_message)
+    # Iterate over the menu items starting from the index
+    for item in content[index+1:]:
+        item = item.strip()
+        if item:
+            # Split the item into words and find the first word present in the emoji map
+            words = item.split()
+            for word in words:
+                if word.lower() in emoji_map:
+                    emoji = emoji_map[word.lower()]
+                    updated_menu.append(f'{emoji} {item.replace("- ", "", 1)}\n')
+                    break  # Stop searching for words once an emoji is found
+
+    # Update the content with the updated menu items
+    content = content[:index+1] + updated_menu
+
+    # Write the updated content back to output.md with utf-8 encoding
+    with open('output.md', 'w', encoding='utf-8') as f:
+        f.writelines(content)

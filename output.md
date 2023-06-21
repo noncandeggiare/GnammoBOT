@@ -1,7 +1,7 @@
-*20 giugno*
+*21 giugno*
 Oggi si mangia:
- - Risotto Alle Carote   
- - Pollo Al Forno   
- - Verdura Cruda   
- - Frutta    
- - Latte E Biscotti
+🍝 Pasta Al Pesto
+🐟 Persico Gratinato Con Fettina Di Limone
+🥦 Verdura Cruda
+🍇 Frutta
+🍕 Pizza Al Pomodoro
