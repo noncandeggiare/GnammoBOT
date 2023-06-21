@@ -24,6 +24,9 @@ jobs:
       - name: Run EstrattoreGnammoBOT to update output.md
         run: python EstrattoreGnammoBOT.py
 
+      - name: Run add-emoji to update output.md with emojis
+        run: python add-emoji.py
+
       - name: Read output.md file
         id: read_output
         run: |
