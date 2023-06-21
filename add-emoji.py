@@ -1,3 +1,5 @@
+#add-emoji
+
 import json
 
 # Load the emoji map from emoji_map.json using utf-8 encoding
@@ -21,11 +23,15 @@ if index is not None:
         if item:
             # Split the item into words and find the first word present in the emoji map
             words = item.split()
+            emoji_found = False
             for word in words:
                 if word.lower() in emoji_map:
                     emoji = emoji_map[word.lower()]
                     updated_menu.append(f'{emoji} {item.replace("- ", "", 1)}\n')
+                    emoji_found = True
                     break  # Stop searching for words once an emoji is found
+            if not emoji_found:
+                updated_menu.append(f'🍴 {item.replace("- ", "", 1)}\n')
 
     # Update the content with the updated menu items
     content = content[:index+1] + updated_menu
