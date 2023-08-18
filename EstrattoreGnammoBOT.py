@@ -15,7 +15,7 @@ today = datetime.date.today()
 today_output = datetime.date.today().strftime("%d ") + month_names[today.month - 1]  # Format: dd mmmm
 
 # URL for the catering menu
-url = f"https://www.mazzotti.org/bassaromagnacatering/calendar.php?comune=6&grado=2&giorno={today}"
+url = f"https://www.mazzotti.org/bassaromagnacatering/calendar.php?comune=7&grado=2&giorno={today}"
 
 # Send a GET request to the URL with certificate verification disabled
 response = requests.get(url, verify=False)
